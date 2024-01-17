@@ -5,9 +5,18 @@
 class hit_record
 {
 public:
+	void set_face_normal(const ray& r, const vec3& outward_normal)
+	{
+		//If dot product is negative then normal is outside sphere, inside otherwise
+		front_face = dot(r.direction(), outward_normal) < 0;
+		normal = front_face ? outward_normal : -outward_normal;
+	}
+
+public:
 	point3 p;
 	vec3 normal;
 	double t;
+	bool front_face;
 };
 
 
@@ -16,5 +25,5 @@ class hittable
 public:
 	virtual ~hittable() = default;
 
-	virtual bool hit(const ray& r, double ray_tmin, double ray_tmax, hit_record& rec) const = 0;
+	virtual bool hit(const ray& r, interval ray_t, hit_record& rec) const = 0;
 };

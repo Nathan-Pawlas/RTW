@@ -1,11 +1,27 @@
 #ifndef COLOR_H
 #define COLOR_H
 
-#include "Math/Vec3.h"
-
+#include "utils.h"
 #include <iostream>
-#include "Image.h"
 
 using color = vec3;
+
+void write_color(std::ostream& out, color pixel_color) {
+    auto r = pixel_color.x();
+    auto g = pixel_color.y();
+    auto b = pixel_color.z();
+
+    // Divide the color by the number of samples.
+    auto scale = 1.0;
+    r *= scale;
+    g *= scale;
+    b *= scale;
+
+    // Write the translated [0,255] value of each color component.
+    static const interval intensity(0.000, 0.999);
+    out << static_cast<int>(256 * intensity.clamp(r)) << ' '
+        << static_cast<int>(256 * intensity.clamp(g)) << ' '
+        << static_cast<int>(256 * intensity.clamp(b)) << '\n';
+}
 
 #endif
