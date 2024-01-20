@@ -100,6 +100,7 @@
     <ClInclude Include="RayTracer\color.h" />
     <ClInclude Include="RayTracer\hittable.h" />
     <ClInclude Include="RayTracer\hittable_list.h" />
+    <ClInclude Include="RayTracer\material.h" />
     <ClInclude Include="RayTracer\Math\interval.h" />
     <ClInclude Include="RayTracer\Math\vec3.h" />
     <ClInclude Include="RayTracer\Primatives\Sphere.h" />

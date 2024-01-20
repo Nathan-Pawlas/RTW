@@ -34,3 +34,4 @@ inline double degrees_to_radians(double degrees)
 #include "Math/interval.h"
 #include "ray.h"
 #include "Math/vec3.h"
+#include "color.h"

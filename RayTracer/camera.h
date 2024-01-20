@@ -3,6 +3,7 @@
 #include "utils.h"
 #include "color.h"
 #include "hittable.h"
+#include "material.h"
 #include <iostream>
 #include <iomanip>
 #include "stb_image_write.h"
@@ -80,13 +81,16 @@ private:
 
 		if (world.hit(r, interval(0.001, infinity), rec))
 		{
-            vec3 dir = rec.normal + random_unit_vector();
-            return 0.7 * ray_color(ray(rec.p, dir), depth - 1, world);
+            ray scattered;
+            color attenuation;
+            if (rec.mat->scatter(r, rec, attenuation, scattered))
+                return attenuation * ray_color(scattered, depth - 1, world);
+            return color(0, 0, 0);
 		}
 
 		vec3 unit_dir = unit_vector(r.direction());
 		auto a = 0.5 * (unit_dir.y() + 1.0);
-		return (1.0 - a) * color(1, 1, 1) + a * color(0.6, 0.4, 0.8);
+		return (1.0 - a) * color(1, 1, 1) + a * color(0.5, 0.6, 0.9);
 	}
 
     ray get_ray(int i, int j) const
