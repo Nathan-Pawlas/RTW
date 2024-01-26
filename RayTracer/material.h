@@ -2,6 +2,7 @@
 
 #include "utils.h"
 #include "hittable.h"
+#include "texture.h"
 
 class hit_record;
 
@@ -16,7 +17,8 @@ public:
 class lambertian : public material
 {
 public:
-	lambertian(const color& a) : albedo(a) {}
+	lambertian(const color& a) : albedo(make_shared<solid_color>(a)) {}
+	lambertian(shared_ptr<texture> t) : albedo(t) {}
 
 	bool scatter(const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered) const override
 	{
@@ -24,12 +26,12 @@ public:
 		if (scatter_dir.near_zero())
 			scatter_dir = rec.normal;
 		scattered = ray(rec.p, scatter_dir, r_in.time());
-		attenuation = albedo;
+		attenuation = albedo->value(rec.u, rec.v, rec.p);
 		return true;
 	}
 
 private:
-	color albedo;
+	shared_ptr<texture> albedo;
 };
 
 class metal : public material

@@ -25,6 +25,8 @@ public:
     double defocus_angle = 0;
     double focus_dist = 10;
 
+    color background;
+
     void render(const hittable& world) {
         initialize();
        
@@ -90,6 +92,8 @@ private:
         auto defocus_radius = focus_dist * tan(degrees_to_radians(defocus_angle) / 2);
         defocus_disk_u = u * defocus_radius;
         defocus_disk_v = v * defocus_radius;
+
+        background = color(0.70, 0.80, 1.00);
     }
 
 	color ray_color(const ray& r, int depth, const hittable& world) const
@@ -110,7 +114,7 @@ private:
 
 		vec3 unit_dir = unit_vector(r.direction());
 		auto a = 0.5 * (unit_dir.y() + 1.0);
-		return (1.0 - a) * color(1, 1, 1) + a * color(0.5, 0.6, 0.9);
+		return (1.0 - a) * color(1, 1, 1) + a * background;
 	}
 
     ray get_ray(int i, int j) const
