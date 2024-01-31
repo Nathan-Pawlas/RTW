@@ -96,6 +96,8 @@
     <ClCompile Include="RayTracer\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="RayTracer\aabb.h" />
+    <ClInclude Include="RayTracer\bvh.h" />
     <ClInclude Include="RayTracer\camera.h" />
     <ClInclude Include="RayTracer\color.h" />
     <ClInclude Include="RayTracer\hittable.h" />
@@ -106,6 +108,7 @@
     <ClInclude Include="RayTracer\Primatives\Sphere.h" />
     <ClInclude Include="RayTracer\ray.h" />
     <ClInclude Include="RayTracer\stb_image_write.h" />
+    <ClInclude Include="RayTracer\texture.h" />
     <ClInclude Include="RayTracer\utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

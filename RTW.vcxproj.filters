@@ -53,5 +53,14 @@
     <ClInclude Include="RayTracer\material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RayTracer\aabb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTracer\bvh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTracer\texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
