@@ -68,6 +68,9 @@
     <ClInclude Include="RayTracer\rtw_stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RayTracer\perlin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="earthmap.jpg">

@@ -108,6 +108,7 @@
     <ClInclude Include="RayTracer\material.h" />
     <ClInclude Include="RayTracer\Math\interval.h" />
     <ClInclude Include="RayTracer\Math\vec3.h" />
+    <ClInclude Include="RayTracer\perlin.h" />
     <ClInclude Include="RayTracer\Primatives\Sphere.h" />
     <ClInclude Include="RayTracer\ray.h" />
     <ClInclude Include="RayTracer\rtw_stb_image.h" />
