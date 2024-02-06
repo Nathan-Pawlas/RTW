@@ -60,7 +60,7 @@ void random_spheres() {
 
     cam.aspect_ratio = 16.0 / 9.0;
     cam.image_width = 400;
-    cam.num_samples = 100;
+    cam.num_samples = 150;
     cam.max_depth = 50;
     cam.background = color(0.70, 0.80, 1.00);
 
@@ -89,7 +89,7 @@ void two_spheres() {
     cam.image_width = 400;
     cam.num_samples = 100;
     cam.max_depth = 50;
-
+    cam.background = color(0.70, 0.80, 1.00);
     cam.vfov = 20;
     cam.camPos = point3(13, 2, 3);
     cam.lookat = point3(0, 0, 0);
@@ -111,7 +111,7 @@ void earth() {
     cam.image_width = 400;
     cam.num_samples = 100;
     cam.max_depth = 50;
-
+    cam.background = color(0.70, 0.80, 1.00);
     cam.vfov = 20;
     cam.camPos = point3(0, 0, 12);
     cam.lookat = point3(0, 0, 0);
@@ -130,7 +130,7 @@ void two_perlin_spheres() {
     world.add(make_shared<sphere>(point3(0, 2, 0), 2, make_shared<lambertian>(pertext)));
 
     camera cam;
-
+    cam.background = color(0.70, 0.80, 1.00);
     cam.aspect_ratio = 16.0 / 9.0;
     cam.image_width = 400;
     cam.num_samples = 100;
@@ -169,7 +169,7 @@ void quads() {
     cam.image_width = 400;
     cam.num_samples = 100;
     cam.max_depth = 50;
-
+    cam.background = color(0.70, 0.80, 1.00);
     cam.vfov = 80;
     cam.camPos = point3(0, 0, 9);
     cam.lookat = point3(0, 0, 0);
@@ -182,7 +182,7 @@ void quads() {
 
 
 int main() {
-    switch (5) {
+    switch (1) {
     case 1: random_spheres(); break;
     case 2: two_spheres();    break;
     case 3: earth(); break;
