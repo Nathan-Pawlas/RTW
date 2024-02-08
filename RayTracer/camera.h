@@ -90,8 +90,6 @@ private:
         auto defocus_radius = focus_dist * tan(degrees_to_radians(defocus_angle) / 2);
         defocus_disk_u = u * defocus_radius;
         defocus_disk_v = v * defocus_radius;
-
-        background = color(0.70, 0.80, 1.00);
     }
 
 	color ray_color(const ray& r, int depth, const hittable& world) const

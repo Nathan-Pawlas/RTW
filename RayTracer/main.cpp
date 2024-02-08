@@ -180,13 +180,76 @@ void quads() {
     cam.render(world);
 }
 
+void simple_light() {
+    hittable_list world;
+
+    auto pertext = make_shared<noise_texture>(4);
+    world.add(make_shared<sphere>(point3(0, -1000, 0), 1000, make_shared<lambertian>(pertext)));
+    world.add(make_shared<sphere>(point3(0, 2, 0), 2, make_shared<lambertian>(pertext)));
+
+    auto difflight = make_shared<diffuse_light>(color(4, 4, 4));
+    world.add(make_shared<sphere>(point3(0, 7, 0), 2, difflight));
+    world.add(make_shared<quad>(point3(3, 1, -2), vec3(2, 0, 0), vec3(0, 2, 0), difflight));
+
+    camera cam;
+
+    cam.aspect_ratio = 16.0 / 9.0;
+    cam.image_width = 400;
+    cam.num_samples = 100;
+    cam.max_depth = 50;
+    cam.background = color(0, 0, 0);
+
+    cam.vfov = 20;
+    cam.camPos = point3(26, 3, 6);
+    cam.lookat = point3(0, 2, 0);
+    cam.up = vec3(0, 1, 0);
+
+    cam.defocus_angle = 0;
+
+    cam.render(world);
+}
+
+void cornell_box() {
+    hittable_list world;
+
+    auto red = make_shared<lambertian>(color(.65, .05, .05));
+    auto white = make_shared<lambertian>(color(.73, .73, .73));
+    auto green = make_shared<lambertian>(color(.12, .45, .15));
+    auto light = make_shared<diffuse_light>(color(15, 15, 15));
+
+    world.add(make_shared<quad>(point3(555, 0, 0), vec3(0, 555, 0), vec3(0, 0, 555), green));
+    world.add(make_shared<quad>(point3(0, 0, 0), vec3(0, 555, 0), vec3(0, 0, 555), red));
+    world.add(make_shared<quad>(point3(343, 554, 332), vec3(-130, 0, 0), vec3(0, 0, -105), light));
+    world.add(make_shared<quad>(point3(0, 0, 0), vec3(555, 0, 0), vec3(0, 0, 555), white));
+    world.add(make_shared<quad>(point3(555, 555, 555), vec3(-555, 0, 0), vec3(0, 0, -555), white));
+    world.add(make_shared<quad>(point3(0, 0, 555), vec3(555, 0, 0), vec3(0, 555, 0), white));
+
+    camera cam;
+
+    cam.aspect_ratio = 1.0;
+    cam.image_width = 1200;
+    cam.num_samples = 1000;
+    cam.max_depth = 100;
+    cam.background = color(0, 0, 0);
+
+    cam.vfov = 40;
+    cam.camPos = point3(278, 278, -800);
+    cam.lookat = point3(278, 278, 0);
+    cam.up = vec3(0, 1, 0);
+
+    cam.defocus_angle = 0;
+
+    cam.render(world);
+}
 
 int main() {
-    switch (1) {
+    switch (7) {
     case 1: random_spheres(); break;
     case 2: two_spheres();    break;
     case 3: earth(); break;
     case 4: two_perlin_spheres(); break;
     case 5: quads(); break;
+    case 6: simple_light(); break;
+    case 7: cornell_box(); break;
     }
 }
