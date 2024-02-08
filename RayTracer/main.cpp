@@ -224,12 +224,15 @@ void cornell_box() {
     world.add(make_shared<quad>(point3(555, 555, 555), vec3(-555, 0, 0), vec3(0, 0, -555), white));
     world.add(make_shared<quad>(point3(0, 0, 555), vec3(555, 0, 0), vec3(0, 555, 0), white));
 
+    world.add(quad::box(point3(130, 0, 65), point3(295, 165, 230), white));
+    world.add(quad::box(point3(265, 0, 295), point3(430, 330, 460), white));
+
     camera cam;
 
     cam.aspect_ratio = 1.0;
-    cam.image_width = 1200;
-    cam.num_samples = 1000;
-    cam.max_depth = 100;
+    cam.image_width = 400;
+    cam.num_samples = 100;
+    cam.max_depth = 50;
     cam.background = color(0, 0, 0);
 
     cam.vfov = 40;
