@@ -98,6 +98,7 @@
     <ClCompile Include="RayTracer\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="RayTracer\constant_medium.h" />
     <ClInclude Include="RayTracer\aabb.h" />
     <ClInclude Include="RayTracer\bvh.h" />
     <ClInclude Include="RayTracer\camera.h" />

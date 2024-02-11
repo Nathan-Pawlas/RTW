@@ -74,6 +74,9 @@
     <ClInclude Include="RayTracer\Primatives\quad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RayTracer\constant_medium.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="earthmap.jpg">

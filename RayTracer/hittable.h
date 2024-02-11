@@ -52,7 +52,7 @@ public:
 
 		rec.p += offset;
 
-		return;
+		return true;
 	}
 
 	aabb bounding_box() const override { return bbox; }
@@ -98,12 +98,36 @@ public:
 	}
 	bool hit(const ray& r, interval ray_t, hit_record& rec) const override
 	{
-		//World space -> Object space
+		//Ray World space -> Object space
 		auto origin = r.origin();
 		auto dir = r.direction();
 
-		//SHIT
+		origin[0] = cos_theta * r.origin()[0] - sin_theta * r.origin()[2];
+		origin[2] = sin_theta * r.origin()[0] + cos_theta * r.origin()[2];
 
+		dir[0] = cos_theta * r.direction()[0] - sin_theta * r.direction()[2];
+		dir[2] = sin_theta * r.direction()[0] + cos_theta * r.direction()[2];
+
+		ray rotated_ray(origin, dir, r.time());
+
+		//Check for intersection
+		if (!object->hit(rotated_ray, ray_t, rec))
+			return false;
+		
+		//Int Point Object space -> World space
+		auto p = rec.p;
+		p[0] = cos_theta * rec.p[0] + sin_theta * rec.p[2];
+		p[2] = -sin_theta * rec.p[0] + cos_theta * rec.p[2];
+
+		//Normal Object space -> World space
+		auto norm = rec.normal;
+		norm[0] = cos_theta * rec.normal[0] + sin_theta * rec.normal[2];
+		norm[2] = -sin_theta * rec.normal[0] + cos_theta * rec.normal[2];
+
+		rec.p = p;
+		rec.normal = norm;
+
+		return true;
 	}
 
 	aabb bounding_box() const override { return bbox; }
