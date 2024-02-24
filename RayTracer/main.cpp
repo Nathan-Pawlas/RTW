@@ -377,7 +377,14 @@ void final_scene(int image_width, int samples_per_pixel, int max_depth) {
 }
 
 
-int main() {
+int main(int argc, char* argv[]) {
+    int scene = 7;
+
+    if (argc > 1)
+    {
+        scene = strtol(argv[1], NULL, 10);
+    }
+
     switch (9) {
     case 1: random_spheres(); break;
     case 2: two_spheres();    break;
