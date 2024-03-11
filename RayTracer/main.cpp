@@ -238,8 +238,8 @@ void cornell_box() {
     camera cam;
 
     cam.aspect_ratio = 1.0;
-    cam.image_width = 400;
-    cam.num_samples = 100;
+    cam.image_width = 800;
+    cam.num_samples = 200;
     cam.max_depth = 50;
     cam.background = color(0, 0, 0);
 
@@ -383,9 +383,10 @@ int main(int argc, char* argv[]) {
     if (argc > 1)
     {
         scene = strtol(argv[1], NULL, 10);
+        std::clog << scene << std::endl;
     }
 
-    switch (9) {
+    switch (7) {
     case 1: random_spheres(); break;
     case 2: two_spheres();    break;
     case 3: earth(); break;
